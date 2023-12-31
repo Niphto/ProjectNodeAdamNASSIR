@@ -1,0 +1,18 @@
+<div *ngIf="!reviewCompleted">
+    <div *ngIf="currentFlashcard" class="flashcard-review">
+        <p>Front: {{ currentFlashcard.front_content }}</p>
+        <p>Back: {{ currentFlashcard.back_content }}</p>
+        <label>Rate (1-5):
+            <input type="number" [(ngModel)]="userRating" min="1" max="5">
+        </label>
+        <button (click)="rateFlashcard(userRating)">Submit Rating</button>
+    </div>
+</div>
+
+<div *ngIf="reviewCompleted">
+    <h2>Review Completed</h2>
+    <div *ngFor="let workData of userWorkData">
+        <p>Card ID: {{ workData.card_id }}</p>
+        <p>Easiness Factor: {{ workData.easinessFactor }}</p>
+    </div>
+</div>

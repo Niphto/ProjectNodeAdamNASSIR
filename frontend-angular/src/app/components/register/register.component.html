@@ -1,0 +1,17 @@
+<div class="container mt-3">
+  <form>
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username" [(ngModel)]="user.username" name="username">
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" [(ngModel)]="user.email" name="email">
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" [(ngModel)]="user.password" name="password">
+    </div>
+    <button type="button" class="btn btn-primary" (click)="register()">Register</button>
+  </form>
+</div>

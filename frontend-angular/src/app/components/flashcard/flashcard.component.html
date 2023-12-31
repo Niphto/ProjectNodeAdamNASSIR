@@ -1,0 +1,28 @@
+<div class="flashcard-list">
+  <select [(ngModel)]="selectedDeckId" (ngModelChange)="loadFlashcards()" name="deckSelect">
+    <option *ngFor="let deck of decks" [value]="deck.deck_id">{{ deck.name }}</option>
+  </select>
+  <div *ngIf="selectedDeckId">
+    <select [(ngModel)]="selectedFlashcardId" (ngModelChange)="loadTags()" name="flashcardSelect">
+      <option *ngFor="let flashcard of flashcards" [value]="flashcard.card_id">{{ flashcard.front_content }}</option>
+    </select>
+  </div>
+  <div *ngFor="let flashcard of flashcards" class="flashcard">
+    <div>{{ flashcard.front_content }}</div>
+    <div>{{ flashcard.back_content }}</div>
+    <div *ngIf="flashcard.tags">
+      <span *ngFor="let tag of flashcard.tags">{{ tag.name }}</span>
+    </div>
+    <select [(ngModel)]="flashcard.selectedTagName">
+      <option *ngFor="let tag of tags" [value]="tag.name">{{ tag.name }}</option>
+    </select>
+    <button (click)="handleTagging(flashcard.card_id, flashcard.selectedTagName, 'add')">Add Tag</button>
+    <button (click)="handleTagging(flashcard.card_id, flashcard.selectedTagName, 'remove')">Remove Tag</button>
+    <button (click)="deleteFlashcard(flashcard.card_id)">Delete</button>
+  </div>
+  <form (ngSubmit)="addFlashcard()">
+    <input type="text" [(ngModel)]="newFlashcard.front_content" name="front_content" placeholder="Front Content">
+    <input type="text" [(ngModel)]="newFlashcard.back_content" name="back_content" placeholder="Back Content">
+    <button type="submit">Add Flashcard</button>
+  </form>
+</div>

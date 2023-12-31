@@ -1,0 +1,22 @@
+<div class="deck-list">
+  <div *ngFor="let deck of decks" class="deck">
+    <div *ngIf="editingDeckId !== deck.deck_id">
+      <h3>{{ deck.name }}</h3>
+      <button (click)="editDeck(deck)">Edit</button>
+      <button (click)="deleteDeck(deck.deck_id)">Delete</button>
+    </div>
+
+    <div *ngIf="editingDeckId === deck.deck_id">
+      <input type="text" [(ngModel)]="tempDeck.name" placeholder="Deck Name">
+      <input type="text" [(ngModel)]="tempDeck.description" placeholder="Description">
+      <button (click)="saveDeck()">Save</button>
+      <button (click)="cancelEdit()">Cancel</button>
+    </div>
+  </div>
+
+  <form (ngSubmit)="addDeck()">
+    <input type="text" [(ngModel)]="newDeck.name" name="name" placeholder="Deck Name">
+    <input type="text" [(ngModel)]="newDeck.description" name="description" placeholder="Description">
+    <button type="submit">Add Deck</button>
+  </form>
+</div>
